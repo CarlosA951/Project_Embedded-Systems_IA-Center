@@ -326,9 +326,10 @@ Discarded input sections
 Memory Configuration
 
 Name             Origin             Length             Attributes
-RAM              0x20000000         0x00003000         xrw
-CCMRAM           0x10000000         0x00001000         xrw
 FLASH            0x08000000         0x00010000         xr
+RAM              0x20000000         0x00003000         xrw
+MEMORY_B1        0x60000000         0x00000000         xr
+CCMRAM           0x10000000         0x00002000         rw
 *default*        0x00000000         0xffffffff
 
 Linker script and memory map
@@ -366,8 +367,8 @@ END GROUP
 LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtend.o
 LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtn.o
                 0x20003000                _estack = 0x20003000
-                0x00000200                _Min_Heap_Size = 0x200
-                0x00000400                _Min_Stack_Size = 0x400
+                0x00000000                _Min_Heap_Size = 0x0
+                0x00000080                _Min_Stack_Size = 0x80
 
 .isr_vector     0x08000000      0x188
                 0x08000000                . = ALIGN (0x4)
@@ -619,15 +620,20 @@ LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../l
                 0x20000020                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000020      0x600
+                0x20000020       0x80
                 0x20000020                . = ALIGN (0x4)
                 0x20000020                PROVIDE (end, .)
                 [!provide]                PROVIDE (_end, .)
-                0x20000220                . = (. + _Min_Heap_Size)
- *fill*         0x20000020      0x200 
-                0x20000620                . = (. + _Min_Stack_Size)
- *fill*         0x20000220      0x400 
-                0x20000620                . = ALIGN (0x4)
+                0x20000020                . = (. + _Min_Heap_Size)
+                0x200000a0                . = (. + _Min_Stack_Size)
+ *fill*         0x20000020       0x80 
+                0x200000a0                . = ALIGN (0x4)
+
+.memory_b1_text
+ *(.mb1text)
+ *(.mb1text*)
+ *(.mb1rodata)
+ *(.mb1rodata*)
 
 /DISCARD/
  libc.a(*)
