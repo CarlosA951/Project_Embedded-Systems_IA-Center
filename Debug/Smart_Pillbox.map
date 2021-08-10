@@ -289,6 +289,14 @@ Discarded input sections
                 0x00000000       0x22 Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_utils.o
  .text.UTILS_EnablePLLAndSwitchSystem
                 0x00000000       0xdc Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_utils.o
+ .text          0x00000000        0x0 HAL\HAL_LCD.o
+ .data          0x00000000        0x0 HAL\HAL_LCD.o
+ .bss           0x00000000        0x0 HAL\HAL_LCD.o
+ .debug_line    0x00000000        0x0 HAL\HAL_LCD.o
+ .debug_str     0x00000000      0x136 HAL\HAL_LCD.o
+ .comment       0x00000000       0x7d HAL\HAL_LCD.o
+ .ARM.attributes
+                0x00000000       0x39 HAL\HAL_LCD.o
  .text          0x00000000       0x14 startup\startup_stm32f334x8.o
  .data          0x00000000        0x0 startup\startup_stm32f334x8.o
  .bss           0x00000000        0x0 startup\startup_stm32f334x8.o
@@ -344,6 +352,7 @@ LOAD Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_exti.o
 LOAD Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_gpio.o
 LOAD Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_rcc.o
 LOAD Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_utils.o
+LOAD HAL\HAL_LCD.o
 LOAD startup\startup_stm32f334x8.o
                 0x00000080                malloc_getpagesize_P = 0x80
 START GROUP
